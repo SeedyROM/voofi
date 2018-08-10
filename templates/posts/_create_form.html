@@ -1,0 +1,9 @@
+<div>
+    <form class="post-create-form" action="{% url 'posts:create' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <textarea name="body" placeholder="Speak your mind!"></textarea>
+        </div>
+        <button>Post Your Mind</button>
+    </form>
+</div>

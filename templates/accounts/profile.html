@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div id="profile">
+        <h4>{{ user.username }}</h4>
+        {% if request.user == user %}
+            {% include 'posts/_create_form.html' %}
+        {% endif %}
+        <div>
+            {% for post in user.posts.all %}
+            <a href="{% url 'posts:detail' pk=post.pk %}">
+                <div class="post">
+                    {{ post.body }}
+                    <div>
+                        {{ post.user.username }}
+                        {{ post.posted_at }}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

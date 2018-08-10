@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="post">
+        <blockquote>{{ post.body }}</blockquote>
+        <div>
+            <a href="{% url 'profile' username=post.user.username %}">
+                {{ post.user.username }}
+            </a>
+            {{ post.posted_at }}
+        </div>
+        <div class="like-button" data-csrf="{{ csrf_token }}" data-pk="{{ post.pk }}">
+            
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/site.js' %}"></script>
+{% endblock scripts %}

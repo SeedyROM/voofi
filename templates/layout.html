@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">    
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">Voofi</a>
+        </div>
+        
+        {% if user.is_authenticated %}
+        <div class="nav-item">
+            <a href="{% url 'profile' username=user.username %}">Profile</a>            
+        </div>
+        <div class="nav-item">
+            <a href="{% url 'accounts:logout' %}">Logout</a>            
+        </div>
+        {% else %}
+        <div class="nav-item">
+            <a href="{% url 'accounts:login' %}">Login</a>
+        </div>
+        <div class="nav-item">
+            <a href="{% url 'accounts:sign-up' %}">Sign-Up</a>
+        </div>
+        {% endif %}
+    </nav>
+    <div id="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>
